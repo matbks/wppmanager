@@ -29,6 +29,4 @@ app.post( '/send' , async (req: Request, res: Response) => {
      }
 })
 
-app.listen( 5000, () => {
-    // console.info('Chat bot ativo')
-})
+app.listen(5000)
