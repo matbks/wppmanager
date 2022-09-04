@@ -54,5 +54,5 @@ app.post( '/send' , async (req: Request, res: Response) => {
      }
 })
 
-// app.listen(5000)
-app.listen(0, () => console.log('Application is running'));
+app.listen(5000)
+// app.listen(0, () => console.log('Application is running'));
