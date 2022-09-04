@@ -9,15 +9,10 @@ var port = process.env.PORT || 5000
 const router = Router();
 
 const app = express()
-      app.use(express.json())
-      app.use( express.urlencoded( { extended:false } ))
+    //   app.use(express.json())
+    //   app.use( express.urlencoded( { extended:false } ))
 
       app.use('/api/', routes);
-
-router.use(function(req,res,next){
-    console.log('something is happening.')
-    next()
-})
 
 router.route('/send')
     .post( async (req: Request, res: Response) => {
@@ -41,24 +36,6 @@ router.route('/send')
     })
 
 
-// app.post( '/send' , async (req: Request, res: Response) => {
-
-//     console.log("vou dar send")
-//     let dateTime = new Date()
-//     let dateTimeStr = dateTime.toString()
-
-//     try {
-//         const { number, message } = req.body
-//         await wppManager.sendText( number, message )
-//     return res.status(200).json()
-//     }
-//     catch(error){
-//         console.error(error)
-//         res.status(500).json({ status: "error", message: error })
-//      }
-// })
-
 app.listen(port, () => {
-    console.log(`App is listening at {PORT}`)
+    console.log(`App is listening at ${port}`)
   });
-// app.listen(0, () => console.log('Application is running'));
