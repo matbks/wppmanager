@@ -18,7 +18,7 @@ app.post('/send', (req, res) => {
 
     console.log("/send");
 
-    try {
+    try { 
         const { number, message } = req.body.toLowerCase()
         console.log(number)
         console.log(message)
