@@ -214,25 +214,27 @@ class WppManager {
 
         // }
 
-        function start(client:Whatsapp) {
-            client.onMessage((message) => {
-                console.log(message.body)
-              if (message.body === 'menu' && message.isGroupMsg === false) {
-                client
-                  .sendText(message.from, 'Welcome Venom 🕷')
-                  .then((result) => {
-                    console.log('Result: ', result); //return object success
-                  })
-                  .catch((erro) => {
-                    console.error('Error when sending: ', erro); //return object error
-                  });
-              }
-            });
-        }
+        
 
         create({ session: "ws-sender-dev", multidevice: true })
             .then((client) => start(client))
             .catch((error) => console.error(error))
+
+            function start(client:Whatsapp) {
+                client.onMessage((message) => {
+                    console.log(message.body)
+                  if (message.body === 'menu' && message.isGroupMsg === false) {
+                    client
+                      .sendText(message.from, 'Welcome Venom 🕷')
+                      .then((result) => {
+                        console.log('Result: ', result); //return object success
+                      })
+                      .catch((erro) => {
+                        console.error('Error when sending: ', erro); //return object error
+                      });
+                  }
+                });
+            }
     }
 
 }
