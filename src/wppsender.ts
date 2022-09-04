@@ -55,9 +55,13 @@ class WppManager {
     private menu = screens.menu.menuButtons.toString()
     // private qr: QRCode
 
-    private setup_answers(client: Whatsapp) {
+    private setup_answers(client: Whatsapp) {   
+
+        console.log("setup_anw")
 
         client.onMessage((message) => {
+
+            console.log("client.onmessage")
 
             let newMessage = message.body.toLowerCase()
 
