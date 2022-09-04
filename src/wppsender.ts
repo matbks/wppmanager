@@ -72,14 +72,14 @@ class WppManager {
 
     }
 
-    private initialize() {
+    privateinitialize() {
 
         const start = (client: Whatsapp) => {
 
             this.client = client
 
         
-                client.onMessage((message) => {
+                    client.onMessage( (message) => {
 
                     console.log("client.onmessage")
 
