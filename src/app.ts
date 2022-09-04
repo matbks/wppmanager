@@ -4,17 +4,20 @@ import { appendFile } from "fs";
 import express, { Request, Response, Router } from "express"
 
  create({
-    session: 'session-name', //name of session
+    session: 'wppBot', //name of session
     multidevice: true // for version not multidevice use false.(default: true)
   })
-  .then((client: Whatsapp) => start(client))
-  .catch((erro: any) => {
+  .then((client) => start(client))
+  .catch((erro) => {
     console.log(erro);
   });
 
 function start(client:any) {
+
     console.log(start)
+
   client.onMessage((message:any) => {
+
     console.log("onmessageReceived")
     if (message.body === 'Hi' && message.isGroupMsg === false) {
       client
@@ -26,5 +29,6 @@ function start(client:any) {
           console.error('Error when sending: ', erro); //return object error
         });
     }
+
   });
 }
