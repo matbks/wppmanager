@@ -1,5 +1,7 @@
 // Supports ES6
 import { create, Whatsapp } from 'venom-bot'; 
+import { appendFile } from "fs";
+import express, { Request, Response, Router } from "express"
 
  create({
     session: 'session-name', //name of session
@@ -11,6 +13,7 @@ import { create, Whatsapp } from 'venom-bot';
   });
 
 function start(client:any) {
+    console.log(start)
   client.onMessage((message:any) => {
     console.log("onmessageReceived")
     if (message.body === 'Hi' && message.isGroupMsg === false) {
