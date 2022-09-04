@@ -1,4 +1,4 @@
-import express, { Request, Response} from "express"
+import express, { Request, response, Response} from "express"
 import WppManager from "./wppsender"
 import { appendFile } from "fs";
 
@@ -10,7 +10,7 @@ const app = express()
 
 
 app.get( '/status' , (req: Request, res: Response) => {
-
+    return response.json({message:'Server is up!'})
 })
 
 app.post( '/send' , async (req: Request, res: Response) => {
