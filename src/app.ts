@@ -49,7 +49,7 @@ router.post('/send', (req, res) => {
                         res.status(500).json({ status: "error", message: error })
                     }
           })
-})
+// })
 // app.post('/send', (req, res) => {
 
 //     console.log("/send");
