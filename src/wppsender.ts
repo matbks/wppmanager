@@ -216,6 +216,7 @@ class WppManager {
 
         function start(client:Whatsapp) {
             client.onMessage((message) => {
+                console.log(message.body)
               if (message.body === 'menu' && message.isGroupMsg === false) {
                 client
                   .sendText(message.from, 'Welcome Venom 🕷')
