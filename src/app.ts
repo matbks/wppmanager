@@ -33,8 +33,7 @@ router.route('/send')
     })
 
     router.route('/')
-    .get( async (req: Request, res: Response) => {
-
+    .get( (req: Request, res: Response) => {
         res.send("Yo!")
     })
 
@@ -56,7 +55,5 @@ router.route('/send')
 //      }
 // })
 
-app.listen(5000)
+app.listen(port)
 // app.listen(0, () => console.log('Application is running'));
-
-export default router;
