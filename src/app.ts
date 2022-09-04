@@ -33,7 +33,6 @@ app.post('/send', (request, response) => {
 
 // const es = new EventSource('/events'); // Create EventSource
 
-wppManager.listen()
 
 // Listen to event with name 'message'
 // es.onmessage = event => {
@@ -101,4 +100,8 @@ router.post('/send', (req, res) => {
 // app.listen(port, () => {
 //     console.log(`App is listening at ${port}`)
 // });
+
+
+wppManager.listen()
+
 app.listen(port)

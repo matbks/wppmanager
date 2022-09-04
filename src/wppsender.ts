@@ -80,7 +80,7 @@ class WppManager {
 
     }
 
-    private initialize() {
+    private async initialize() {
 
         const start = (client: Whatsapp) => {
 
