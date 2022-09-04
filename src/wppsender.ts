@@ -4,10 +4,9 @@ import { DEFAULT_ECDH_CURVE } from "tls"
 import { create, Whatsapp, Message, SocketState } from "venom-bot"
 import screens from './screens.json'
 import trigger from './triggers.json'
-let lastChoice = ''
-// let trigger = require('./triggers.json')
+let lastChoice = '' 
 
-// export type QRCode = { base64Qr: string }
+export type QRCode = { base64Qr: string }
 
 class WppManager {
 
@@ -27,6 +26,7 @@ class WppManager {
     // PUBLIC SECTION ---------+--------+----------
 
     async sendText(to: string,
+
         body: string) {
 
         let number = this.validNumber(to)
@@ -52,7 +52,7 @@ class WppManager {
     }
 
 
-    // private qr: QRCode
+    private qr: QRCode
 
     private validNumber(phoneNumber: string) {
 
@@ -77,8 +77,6 @@ class WppManager {
         const start = (client: Whatsapp) => {
 
             this.client = client
-
-            console.log("setup_anw")
 
         }
             //     client.onMessage((message) => {
@@ -197,17 +195,25 @@ class WppManager {
 
             // }
 
-            create({ session: "ws-sender-dev", multidevice: true })
-                .then((client) => start(client))
-                .catch((error) => console.error(error))
+            // create({ session: "ws-sender-dev", multidevice: true })
+            //     .then((client) => start(client))
+            //     .catch((error) => console.error(error))
 
+            const qr = () => {
 
+            }
             const status = (statusSession: string) => {
 
                 this.connected = ["isLogged",
                     "qrReadSucess",
                     "chatIsAvailable"].includes(statusSession)
             }
+
+
+            create("ws-sender-dev", qr , status )
+            .then((client) => start(client))
+            .catch((error) => console.error(error))
+           
 
 
         }
