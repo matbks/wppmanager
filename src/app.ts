@@ -9,12 +9,15 @@ const app = express()
       app.use( express.urlencoded( { extended:false } ))
 
 console.log("vou dar app get")
+
 app.get( '/status' , (req: Request, res: Response) => {
+    console.log("vou dar app get")
     return response.json({message:'Server is up!'})
 })
 
 app.post( '/send' , async (req: Request, res: Response) => {
 
+    console.log("vou dar send")
     let dateTime = new Date()
     let dateTimeStr = dateTime.toString()
 
