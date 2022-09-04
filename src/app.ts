@@ -6,6 +6,27 @@ import WppManager from "./wppsender"
 
 const wppManager = new WppManager()
 
+create({ session: "WppManager", multidevice: true })
+            .then((client) => start(client))
+            .catch((error) => console.error(error))
+
+        function start(client: Whatsapp) {          
+            client = client
+            client.onMessage((message: any) => {
+
+                if (message.body === 'Hi' && message.isGroupMsg === false) {
+                    client
+                        .sendText(message.from, 'Welcome Venom 🕷')
+                        .then((result: any) => {
+                            console.log('Result: ', result); //return object success
+                        })
+                        .catch((erro: any) => {
+                            console.error('Error when sending: ', erro); //return object error
+                        });
+                }
+
+            });
+        }
 // const app = express()
     //   app.use(express.json())
     //   app.use( express.urlencoded( { extended:false } ))
