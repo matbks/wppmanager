@@ -55,12 +55,12 @@ class WppManager {
     private menu = screens.menu.menuButtons.toString()
     // private qr: QRCode
 
-    private async setup_answers(client: Whatsapp) {   
+    private setup_answers(client: Whatsapp) {
 
         console.log("setup_anw")
 
-         client.onMessage(message => {                       
-            
+        client.onMessage(message => {
+
             console.log("client.onmessage")
 
             let newMessage = message.body.toLowerCase()
@@ -88,7 +88,7 @@ class WppManager {
 
                     lastChoice = "menu"
 
-                break;
+                    break;
 
                 case "alterar minha senha":
 
@@ -98,7 +98,7 @@ class WppManager {
 
                     lastChoice = "alterar minha senha"
 
-                break;
+                    break;
 
                 case "outro usuário deseja alterar sua senha":
 
@@ -107,7 +107,7 @@ class WppManager {
                     this.sendText(message.from, "Digite o número de telefone do usuário")
 
                     lastChoice = "numero de telefone do usuario"
-                break;
+                    break;
 
                 default:
 
@@ -150,22 +150,22 @@ class WppManager {
                             .then((result) => {
                                 this.sendText(message.from, "Menu de ajuda enviado ao usuário.")
                                 console.log('Result: ', result)
-                                lastChoice = '' 
+                                lastChoice = ''
                             })
                             .catch((erro) => {
                                 this.sendText(message.from, erro)
                                 console.error('Error when sending: ', erro)
-                                lastChoice = '' 
+                                lastChoice = ''
                             });
 
-                          
+
                     }
 
                     break;
             }
         });
 
-    } 
+    }
 
     private validNumber(phoneNumber: string) {
 
@@ -214,27 +214,28 @@ class WppManager {
 
         // }
 
-        
+
 
         create({ session: "ws-sender-dev", multidevice: true })
             .then((client) => start(client))
             .catch((error) => console.error(error))
 
-            function start(client:Whatsapp) {
-                client.onMessage((message) => {
-                    console.log(message.body)
-                  if (message.body === 'menu' && message.isGroupMsg === false) {
+        function start(client: Whatsapp) {
+
+            client.onMessage((message) => {
+                console.log(message.body)
+                if (message.body === 'menu' && message.isGroupMsg === false) {
                     client
-                      .sendText(message.from, 'Welcome Venom 🕷')
-                      .then((result) => {
-                        console.log('Result: ', result); //return object success
-                      })
-                      .catch((erro) => {
-                        console.error('Error when sending: ', erro); //return object error
-                      });
-                  }
-                });
-            }
+                        .sendText(message.from, 'Welcome Venom 🕷')
+                        .then((result) => {
+                            console.log('Result: ', result); //return object success
+                        })
+                        .catch((erro) => {
+                            console.error('Error when sending: ', erro); //return object error
+                        });
+                }
+            });
+        }
     }
 
 }
