@@ -59,6 +59,6 @@ router.route('/send')
 // })
 
 app.listen(port, () => {
-    console.log(`App is listening at {process.ENV.PORT}`)
+    console.log(`App is listening at {PORT}`)
   });
 // app.listen(0, () => console.log('Application is running'));
