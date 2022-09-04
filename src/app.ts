@@ -8,7 +8,7 @@ const app = express()
       app.use(express.json())
       app.use( express.urlencoded( { extended:false } ))
 
-
+console.log("vou dar app get")
 app.get( '/status' , (req: Request, res: Response) => {
     return response.json({message:'Server is up!'})
 })
