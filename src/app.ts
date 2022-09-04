@@ -14,22 +14,44 @@ const app = express()
 //     response.send('Hello world!');
 // });
 
-app.post('/send', (req, res) => {
-
-    console.log("/send");
-
+app.route('/events')
+  .all(function (req, res, next) {
+    // runs for all HTTP verbs first
+    // think of it as route specific middleware!
+  })
+  .get(function (req, res, next) {
+    res.json({})
+  })
+  .post(function (req, res, next) {
     try { 
-        const { number, message } = req.body.toLowerCase()
-        console.log(number)
-        console.log(message)
-        wppManager.sendText(number, message)
-        return res.send(200).json();
-    }
-    catch (error) {
-        console.error(error);
-        res.send(500).json({ status: "error", message: error })
-    }
-})
+                const { number, message } = req.body.toLowerCase()
+                console.log(number)
+                console.log(message)
+                wppManager.sendText(number, message)
+                return res.send(200).json();
+            }
+            catch (error) {
+                console.error(error);
+                res.send(500).json({ status: "error", message: error })
+            }
+  })
+
+// app.post('/send', (req, res) => {
+
+//     console.log("/send");
+
+//     try { 
+//         const { number, message } = req.body.toLowerCase()
+//         console.log(number)
+//         console.log(message)
+//         wppManager.sendText(number, message)
+//         return res.send(200).json();
+//     }
+//     catch (error) {
+//         console.error(error);
+//         res.send(500).json({ status: "error", message: error })
+//     }
+// })
 
 // app.listen(port, () => {
 //     console.log(`App is listening at ${port}`)
