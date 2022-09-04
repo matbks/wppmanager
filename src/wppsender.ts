@@ -21,7 +21,7 @@ class WppManager {
     // PUBLIC SECTION ---------+--------+----------
 
     async sendText(to: string,
-        body: string) {
+                   body: string) {
 
         let number = this.validNumber(to)
 
@@ -55,11 +55,11 @@ class WppManager {
     private menu = screens.menu.menuButtons.toString()
     // private qr: QRCode
 
-    private setup_answers(client: Whatsapp) {
+    private setup_answers() {
 
         console.log("setup_anw")
 
-        client.onMessage(message => {
+        this.client.onMessage((message) => {
 
             console.log("client.onmessage")
 
@@ -163,7 +163,7 @@ class WppManager {
 
                     break;
             }
-        });
+        })
 
     }
 
@@ -199,43 +199,43 @@ class WppManager {
         }
 
 
-        // const start = async (client: Whatsapp) => {
+        const start = async (client: Whatsapp) => {
 
-        //     this.client = client
+            this.client = client
 
-        //      await this.setup_answers(client)
+            this.setup_answers(client)
 
-        //     if (this.testing) {
+            if (this.testing) {
 
-        //         console.info("Starting conversation for testing ...")
+                console.info("Starting conversation for testing ...")
 
-        //         this.sendText("5511932735086", "Cardápio")
+                this.sendText("5511932735086", "Cardápio")
 
-        //     }
+            }
 
-        // }
+        }
 
 
         create({ session: "ws-sender-dev", multidevice: true })
             .then((client) => start(client))
             .catch((error) => console.error(error))
 
-        function start(client: Whatsapp) {
+        // function start(client: Whatsapp) {
 
-            client.onMessage((message) => {
-                console.log(message.body)
-                if (message.body === 'menu' && message.isGroupMsg === false) {
-                    client
-                        .sendText(message.from, 'Welcome Venom 🕷')
-                        .then((result) => {
-                            console.log('Result: ', result); //return object success
-                        })
-                        .catch((erro) => {
-                            console.error('Error when sending: ', erro); //return object error
-                        });
-                }
-            });
-        }
+        //     this.client.onMessage((message) => {
+        //         console.log(message.body)
+        //         if (message.body === 'menu' && message.isGroupMsg === false) {
+        //             client
+        //                 .sendText(message.from, 'Welcome Venom 🕷')
+        //                 .then((result) => {
+        //                     console.log('Result: ', result); //return object success
+        //                 })
+        //                 .catch((erro) => {
+        //                     console.error('Error when sending: ', erro); //return object error
+        //                 });
+        //         }
+        //     });
+        // }
 
     }
 
