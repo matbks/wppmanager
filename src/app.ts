@@ -34,7 +34,7 @@ app.post('/send', (request, response) => {
 
 app.listen( (request: Request, response: Response) => { 
 
-
+    console.log("request")
 
 })
 
