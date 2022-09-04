@@ -18,7 +18,8 @@ function start(client:any) {
 
   client.onMessage((message:any) => {
 
-    console.log("onmessageReceived")
+    console.info("Incoming Message")
+    
     if (message.body === 'Hi' && message.isGroupMsg === false) {
       client
         .sendText(message.from, 'Welcome Venom 🕷')
