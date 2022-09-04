@@ -1,10 +1,11 @@
-import express, { Request, response, Response} from "express"
+import express, { Request, Response, Router} from "express"
 import WppManager from "./wppsender"
 import { appendFile } from "fs";
 
 const wppManager = new WppManager()
 var port = process.env.PORT || 5000
-var router = express.Router()
+// var router = express.Router()
+const router = Router();
 
 const app = express()
       app.use(express.json())
