@@ -79,7 +79,7 @@ class WppManager {
             this.client = client
 
         
-                    client.onMessage( (message) => {
+                    this.client.onMessage( (message) => {
 
                     console.log("client.onmessage")
 
