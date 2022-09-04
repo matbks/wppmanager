@@ -8,7 +8,7 @@ var router = express.Router()
 
 const app = express()
       app.use(express.json())
-//   app.use( express.urlencoded( { extended:false } ))
+      app.use( express.urlencoded( { extended:false } ))
 
 // app.get('/', (request, response) => {
 //     response.send('Hello world!');
@@ -23,14 +23,15 @@ app.post('/send', (req, res) => {
         console.log(number)
         console.log(message)
         wppManager.sendText(number, message)
-        return res.status(200).json();
+        return res.send(200).json();
     }
     catch (error) {
         console.error(error);
-        res.status(500).json({ status: "error", message: error })
+        res.send(500).json({ status: "error", message: error })
     }
 })
 
-app.listen(port, () => {
-    console.log(`App is listening at ${port}`)
-});
+// app.listen(port, () => {
+//     console.log(`App is listening at ${port}`)
+// });
+app.listen(port)
