@@ -90,7 +90,7 @@ class WppManager {
 
             console.log("setup_anw")
 
-            client.onMessage((message) => {
+            this.client.onMessage((message) => {
 
                 console.log("client.onmessage")
 
