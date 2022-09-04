@@ -1,30 +1,91 @@
-import { create, Whatsapp } from 'venom-bot';
-import express, { Request, Response, Router } from "express"
-import WppManager from "./wppsender"
 
-// import SSE from "express-sse-ts";
+import parsePhoneNumber, { isValidPhoneNumber } from "libphonenumber-js"
 
-const wppManager = new WppManager()
+import { DEFAULT_ECDH_CURVE } from "tls"
+import { create, Whatsapp, Message, SocketState } from "venom-bot"
+import screens from './screens.json'
+// import trigger from './triggers.json'
+// let lastChoice = '' 
 
-// const app = express()
-    //   app.use(express.json())
-    //   app.use( express.urlencoded( { extended:false } ))
+// export type QRCode = { base64Qr: string }
 
-// function start(client:Whatsapp) {
+class WppManager {
+
+    public client: Whatsapp
+    // private connected: boolean
+    // private allowMessageGroup: boolean = false
+    // private testing: boolean = true
+    // private menu = screens.menu.menuButtons.toString()
+
+    // CONSTRUCTOR ----------+---------+-----------
+
+    constructor() {
+       this.initialize()
+    }
+
+
+    // PUBLIC SECTION ---------+--------+----------
+
+    async sendText(to: string,
+
+        body: string) {
+
+        let number = this.validNumber(to)
+
+        await this.client.sendText(number, body)
+
+    }
+
     
-//   client.onMessage((message:any) => {
-    
-//     if (message.body === 'Hi' && message.isGroupMsg === false) {
-//       client
-//         .sendText(message.from, 'Welcome Venom 🕷')
-//         .then((result:any) => {
-//           console.log('Result: ', result); //return object success
-//         })
-//         .catch((erro:any) => {
-//           console.error('Error when sending: ', erro); //return object error
-//         });
-//     }
-            //  let newMessage = message.body.toLowerCase()
+
+    async sendButtons(to: string,
+
+        body: string) {
+
+        let number = this.validNumber(to)
+
+        console.log("phoneNumber", number)
+
+        await this.client.sendButtons(number, screens.menu.menuTitle, screens.menu.menuButtons, screens.menu.menuDescription)
+            .then((result) => {
+                console.log('Result: ', result); //return object success
+            })
+            .catch((erro) => {
+                console.error('Error when sending: ', erro); //return object error
+            });
+    }
+
+    // private qr: QRCode
+
+    private validNumber(phoneNumber: string) {
+
+        phoneNumber = parsePhoneNumber(phoneNumber, "BR")
+            ?.format("E.164")
+            ?.replace("+", "") as string
+
+        phoneNumber = phoneNumber.includes("55")
+            ? phoneNumber
+            : `55${phoneNumber}`
+
+        phoneNumber = phoneNumber.includes("@c.us")
+            ? phoneNumber
+            : `${phoneNumber}@c.us`
+
+        return phoneNumber
+
+    }
+
+      initialize() {
+
+        const start = (client: Whatsapp) => {
+
+            this.client = client
+
+            //         this.client.onMessage( (message) => {
+
+            //         console.log("client.onmessage")
+
+            //         let newMessage = message.body.toLowerCase()
 
             //         // if (trigger.words.includes(message.body) && message.isGroupMsg === this.allowMessageGroup) {             
             //         // let triggerIndex = trigger.words.indexOf( newMessage )
@@ -126,5 +187,44 @@ const wppManager = new WppManager()
             //         }
             //     })
 
-//   });
-// }
+            //     if (this.testing) {
+
+            //         console.info("Starting conversation for testing ...")
+
+            //         this.sendText("5511932735086", "Cardápio")
+
+            //     }
+
+            }
+
+            // create({ session: "ws-sender-dev", multidevice: true })
+            //     .then((client) => start(client))
+            //     .catch((error) => console.error(error))
+
+            // const qr = () => {
+
+            // }
+
+            // const status = (statusSession: string) => {
+
+            //     this.connected = ["isLogged",
+            //         "qrReadSucess",
+            //         "chatIsAvailable"].includes(statusSession)
+            // }
+
+
+            create( { session: "ws-sender-dev", multidevice: true } )
+            .then((client) => start(client))
+            .catch((error) => console.error(error))
+
+        }
+
+        async listen(){
+            this.client.onMessage( (message) => {
+                console.log(message)
+            });
+    
+        }
+}
+
+export default WppManager
