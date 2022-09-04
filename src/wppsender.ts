@@ -80,7 +80,7 @@ class WppManager {
 
             console.log("setup_anw")
 
-
+        }
             //     client.onMessage((message) => {
 
             //         console.log("client.onmessage")
@@ -187,13 +187,13 @@ class WppManager {
             //         }
             //     })
 
-                if (this.testing) {
+                // if (this.testing) {
 
-                    console.info("Starting conversation for testing ...")
+                //     console.info("Starting conversation for testing ...")
 
-                    this.sendText("5511932735086", "Cardápio")
+                //     this.sendText("5511932735086", "Cardápio")
 
-                }
+                // }
 
             // }
 
@@ -212,7 +212,7 @@ class WppManager {
 
         }
 
-    }
+    
 }
 
 export default WppManager
