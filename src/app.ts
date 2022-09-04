@@ -4,7 +4,7 @@ import { appendFile } from "fs";
 import express, { Request, Response, Router } from "express"
 
  create({
-    session: '1', //name of session
+    session: '2', //name of session
     multidevice: true // for version not multidevice use false.(default: true)
   })
   .then((client) => start(client))
