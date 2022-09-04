@@ -1,7 +1,7 @@
 import express, { Request, Response, Router } from "express"
 import WppManager from "./wppsender"
 import { appendFile } from "fs";
-import SSE from "express-sse-ts";
+// import SSE from "express-sse-ts";
 
 const wppManager = new WppManager()
 var port = process.env.PORT || 5000
