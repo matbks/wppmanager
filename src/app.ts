@@ -1,4 +1,4 @@
-import { create, Whatsapp, Message } from 'venom-bot';
+import { create, Whatsapp } from 'venom-bot';
 
   create({
     session: 'WppManager', //name of session
