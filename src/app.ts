@@ -18,7 +18,7 @@ app.post('/send', (request, response) => {
                         console.log(number)
                         console.log(message)
                         wppManager.sendText(number, message)
-                        return response.send(200).json();
+                        return response.sendStatus(200).json();
                     }
                     catch (error) {
                         console.error(error);
