@@ -10,14 +10,14 @@ const app = express()
       app.use(express.json())
       app.use( express.urlencoded( { extended:false } ))
 
-app.post('/', (request, response) => {
+app.post('/send', (request, response) => {
 
     try { 
-                        const { number, message } = req.body.toLowerCase()
+                        const { number, message } = request.body.toLowerCase()
                         console.log(number)
                         console.log(message)
                         wppManager.sendText(number, message)
-                        return res.send(200).json();
+                        return response.send(200).json();
                     }
                     catch (error) {
                         console.error(error);
