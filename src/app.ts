@@ -11,6 +11,7 @@ const app = express()
 console.log("vou dar app get")
 
 app.get( '/' , (req: Request, res: Response) => {
+    res.render("index.html");
     console.log("vou dar app get")
     res.send("Hello")
     return response.json({message:'Server is up!'})
