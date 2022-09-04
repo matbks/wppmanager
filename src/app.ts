@@ -35,7 +35,7 @@ app.get('/', (request, response) => {
     response.send('Hello world!');
 });
 
-app.post('/',  (req: Request, res: Response) => {
+app.post('/send',  (req: Request, res: Response) => {
 
     console.log("vou dar send");
 
