@@ -5,8 +5,8 @@ import routes from './routes';
 
 const wppManager = new WppManager()
 var port = process.env.PORT || 5000
-// var router = express.Router()
-const router = Router();
+var router = express.Router()
+// const router = Router();
 
 const app = express()
     //   app.use(express.json())
