@@ -1,8 +1,7 @@
 // Supports ES6
 import venom, { create, Whatsapp } from 'venom-bot'; 
 
-venom
-  .create({
+ create({
     session: 'session-name', //name of session
     multidevice: true // for version not multidevice use false.(default: true)
   })
