@@ -64,7 +64,8 @@ class WppManager {
             // if (trigger.words.includes(message.body) && message.isGroupMsg === this.allowMessageGroup) {             
             // let triggerIndex = trigger.words.indexOf( newMessage )
             // let triggerAction = trigger.actions[ triggerIndex ] as keyof typeof screens
-
+            console.log("newmessage")
+            console.log(newMessage)
             switch (newMessage) {
 
                 case "menu":
