@@ -55,11 +55,6 @@ class WppManager {
     private menu = screens.menu.menuButtons.toString()
     // private qr: QRCode
 
-    private setup_answers() {
-
-
-
-    }
 
     private validNumber(phoneNumber: string) {
 
@@ -81,15 +76,17 @@ class WppManager {
 
     private initialize() {
 
-        const status = (statusSession: string) => {
+        // const status = (statusSession: string) => {
 
-            this.connected = ["isLogged",
-                "qrReadSucess",
-                "chatIsAvailable"].includes(statusSession)
-        }
+        //     this.connected = ["isLogged",
+        //         "qrReadSucess",
+        //         "chatIsAvailable"].includes(statusSession)
+        // }
 
 
         const start = async (client: Whatsapp) => {
+
+            this.client = client
 
             console.log("setup_anw")
 
