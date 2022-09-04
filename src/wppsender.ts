@@ -36,6 +36,13 @@ class WppManager {
 
     }
 
+    async listen(){
+        this.client.onMessage( (message) => {
+            console.log(message)
+        });
+
+    }
+
     async sendButtons(to: string,
         body: string) {
 

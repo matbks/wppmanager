@@ -33,9 +33,7 @@ app.post('/send', (request, response) => {
 
 // const es = new EventSource('/events'); // Create EventSource
 
-wppManager.client.onMessage( (message) => {
-
-    console.log("chegou")
+wppManager.listen()
 
 // Listen to event with name 'message'
 // es.onmessage = event => {
@@ -45,7 +43,7 @@ wppManager.client.onMessage( (message) => {
 // // Listen to event with name 'eventName'
 // es.addEventListener('eventName', event => {
 //     // Do something width event.
-});
+// });
 
 // app.route('/events')
 //   .all(function (req, res, next) {
