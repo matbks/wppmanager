@@ -11,6 +11,12 @@ let lastChoice = ''
 
 class WppManager {
 
+    private client: Whatsapp
+    private connected: boolean
+    private allowMessageGroup: boolean = false
+    private testing: boolean = true
+    private menu = screens.menu.menuButtons.toString()
+
     // CONSTRUCTOR ----------+---------+-----------
 
     constructor() {
@@ -21,7 +27,7 @@ class WppManager {
     // PUBLIC SECTION ---------+--------+----------
 
     async sendText(to: string,
-        body: string) {
+                   body: string) {
 
         let number = this.validNumber(to)
 
@@ -45,14 +51,7 @@ class WppManager {
             });
     }
 
-
-    // PRIVATE SECTION ----------+---------+-----------
-
-    private client: Whatsapp
-    private connected: boolean
-    private allowMessageGroup: boolean = false
-    private testing: boolean = true
-    private menu = screens.menu.menuButtons.toString()
+    
     // private qr: QRCode
 
     private validNumber(phoneNumber: string) {
@@ -91,6 +90,8 @@ class WppManager {
     }
 
     async start(client: Whatsapp) {
+
+        this.client = client
 
         console.log("setup_anw")
 
