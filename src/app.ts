@@ -10,11 +10,11 @@ const app = express()
       app.use(express.json())
 //   app.use( express.urlencoded( { extended:false } ))
 
-app.get('/', (request, response) => {
-    response.send('Hello world!');
-});
+// app.get('/', (request, response) => {
+//     response.send('Hello world!');
+// });
 
-app.post('/send', async (req: Request, res: Response) => {
+app.post('/send', (req, res) => {
 
     console.log("/send");
 
