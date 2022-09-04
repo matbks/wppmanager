@@ -72,14 +72,14 @@ class WppManager {
 
     }
 
-    private initialize() {
+    private async initialize() {
 
-        const start = (client: Whatsapp) => {
+        const start = async (client: Whatsapp) => {
 
             this.client = client
 
         
-                    this.client.onMessage( (message) => {
+                    await this.client.onMessage( (message) => {
 
                     console.log("client.onmessage")
 
