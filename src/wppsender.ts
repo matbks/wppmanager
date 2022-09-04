@@ -203,7 +203,7 @@ class WppManager {
 
             this.client = client
 
-            this.setup_answers(client)
+            this.setup_answers()
 
             if (this.testing) {
 
