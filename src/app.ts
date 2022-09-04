@@ -32,6 +32,12 @@ router.route('/send')
         }
     })
 
+    router.route('/')
+    .get( async (req: Request, res: Response) => {
+
+        res.send("Yo!")
+    })
+
 
 // app.post( '/send' , async (req: Request, res: Response) => {
 
