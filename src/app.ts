@@ -1,114 +1,27 @@
-import express, { Request, Response, Router } from "express"
-import WppManager from "./wppsender"
-import { appendFile } from "fs";
-// import SSE from "express-sse-ts";
+// Supports ES6
+import venom, { create, Whatsapp } from 'venom-bot'; 
 
-const wppManager = new WppManager()
-var port = process.env.PORT || 5000
-var router = express.Router()
+venom
+  .create({
+    session: 'session-name', //name of session
+    multidevice: true // for version not multidevice use false.(default: true)
+  })
+  .then((client: any) => start(client))
+  .catch((erro: any) => {
+    console.log(erro);
+  });
 
-const app = express()
-      app.use(express.json())
-      app.use( express.urlencoded( { extended:false } ))
-
-app.post('/send', (request, response) => {
-
-    try { 
-                        let { number, message } = request.body
-                        number = number.toLowerCase();
-                        console.log(number)
-                        console.log(message)
-                        wppManager.sendText(number, message)
-                        wppManager.listen()
-                        return response.sendStatus(200).json();
-                    }
-                    catch (error) {
-                        console.error(error);
-                        response.send(500).json({ status: "error", message: error })
-                    }
-        
-
-    
-})
-
-
-app.listen(5000, (request: Request, response: Response) => { 
-
-    console.log("request")
-
-})
-
-// const es = new EventSource('/events'); // Create EventSource
-
-
-// Listen to event with name 'message'
-// es.onmessage = event => {
-//     // Do something width event.
-// }
-
-// // Listen to event with name 'eventName'
-// es.addEventListener('eventName', event => {
-//     // Do something width event.
-// });
-
-// app.route('/events')
-//   .all(function (req, res, next) {
-//     // runs for all HTTP verbs first
-//     // think of it as route specific middleware!
-//   })
-//   .get(function (req, res, next) {
-//     res.json({})
-//   })
-//   .post(function (req, res, next) {
-//     try { 
-//                 const { number, message } = req.body.toLowerCase()
-//                 console.log(number)
-//                 console.log(message)
-//                 wppManager.sendText(number, message)
-//                 return res.send(200).json();
-//             }
-//             catch (error) {
-//                 console.error(error);
-//                 res.send(500).json({ status: "error", message: error })
-//             }
-//   })
-
-router.post('/send', (req, res) => {
-    try { 
-                        const { number, message } = req.body.toLowerCase()
-                        console.log(number)
-                        console.log(message)
-                        wppManager.sendText(number, message)
-                        return res.sendStatus(200).json();
-                    }
-                    catch (error) {
-                        console.error(error);
-                        res.sendStatus(500).json({ status: "error", message: error })
-                    }
-          })
-// })
-// app.post('/send', (req, res) => {
-
-//     console.log("/send");
-
-//     try { 
-//         const { number, message } = req.body.toLowerCase()
-//         console.log(number)
-//         console.log(message)
-//         wppManager.sendText(number, message)
-//         return res.send(200).json();
-//     }
-//     catch (error) {
-//         console.error(error);
-//         res.send(500).json({ status: "error", message: error })
-//     }
-// })
-
-// app.listen(port, () => {
-//     console.log(`App is listening at ${port}`)
-// });
-
-
-
-
-// app.listen(port)
+function start(client:any) {
+  client.onMessage((message:any) => {
+    if (message.body === 'Hi' && message.isGroupMsg === false) {
+      client
+        .sendText(message.from, 'Welcome Venom 🕷')
+        .then((result:any) => {
+          console.log('Result: ', result); //return object success
+        })
+        .catch((erro:any) => {
+          console.error('Error when sending: ', erro); //return object error
+        });
+    }
+  });
+}
