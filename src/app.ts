@@ -12,6 +12,7 @@ console.log("vou dar app get")
 
 app.get( '/' , (req: Request, res: Response) => {
     console.log("vou dar app get")
+    res.send("Hello")
     return response.json({message:'Server is up!'})
 })
 
@@ -32,4 +33,5 @@ app.post( '/send' , async (req: Request, res: Response) => {
      }
 })
 
-app.listen(5000)
+// app.listen(5000)
+app.listen(0, () => console.log('Application is running'));
