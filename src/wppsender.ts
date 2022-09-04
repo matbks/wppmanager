@@ -59,8 +59,8 @@ class WppManager {
 
         console.log("setup_anw")
 
-        await client.onMessage((message) => {
-
+         client.onMessage((message) => {                       
+            
             console.log("client.onmessage")
 
             let newMessage = message.body.toLowerCase()
@@ -165,7 +165,7 @@ class WppManager {
             }
         });
 
-    }
+    } 
 
     private validNumber(phoneNumber: string) {
 
@@ -202,7 +202,7 @@ class WppManager {
 
             this.client = client
 
-            this.setup_answers(client)
+             await this.setup_answers(client)
 
             if (this.testing) {
 
