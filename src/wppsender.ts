@@ -198,20 +198,35 @@ class WppManager {
                 "chatIsAvailable"].includes(statusSession)
         }
 
-        const start = async (client: Whatsapp) => {
+        // const start = async (client: Whatsapp) => {
 
-            this.client = client
+        //     this.client = client
 
-             await this.setup_answers(client)
+        //      await this.setup_answers(client)
 
-            if (this.testing) {
+        //     if (this.testing) {
 
-                console.info("Starting conversation for testing ...")
+        //         console.info("Starting conversation for testing ...")
 
-                this.sendText("5511932735086", "Cardápio")
+        //         this.sendText("5511932735086", "Cardápio")
 
-            }
+        //     }
 
+        // }
+
+        function start(client:Whatsapp) {
+            client.onMessage((message) => {
+              if (message.body === 'menu' && message.isGroupMsg === false) {
+                client
+                  .sendText(message.from, 'Welcome Venom 🕷')
+                  .then((result) => {
+                    console.log('Result: ', result); //return object success
+                  })
+                  .catch((erro) => {
+                    console.error('Error when sending: ', erro); //return object error
+                  });
+              }
+            });
         }
 
         create({ session: "ws-sender-dev", multidevice: true })
