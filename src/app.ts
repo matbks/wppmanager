@@ -35,7 +35,7 @@ app.get('/', (request, response) => {
     response.send('Hello world!');
 });
 
-app.post('/send', async (req: Request, res: Response) => {
+app.post('/send',  (req: Request, res: Response) => {
 
     console.log("/send");
 
@@ -43,7 +43,7 @@ app.post('/send', async (req: Request, res: Response) => {
         const { number, message } = req.body
         console.log(number)
         console.log(message)
-        await wppManager.sendText(number, message)
+        wppManager.sendText(number, message)
         return res.status(200).json();
     }
     catch (error) {
