@@ -40,7 +40,7 @@ app.post('/send',  (req: Request, res: Response) => {
     console.log("/send");
 
     try {
-        const { number, message } = req.body
+        const { number, message } = req.body.toLowerCase()
         console.log(number)
         console.log(message)
         wppManager.sendText(number, message)
