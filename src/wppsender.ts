@@ -80,7 +80,7 @@ class WppManager {
     
             console.log("setup_anw")
 
-            
+
     
         //     client.onMessage((message) => {
     
@@ -214,7 +214,7 @@ class WppManager {
     }
 
     
-
+    }
 }
 
 export default WppManager
