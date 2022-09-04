@@ -37,10 +37,12 @@ app.get('/', (request, response) => {
 
 app.post('/send', async (req: Request, res: Response) => {
 
-    console.log("vou dar send");
+    console.log("/send");
 
     try {
         const { number, message } = req.body
+        console.log(number)
+        console.log(message)
         await wppManager.sendText(number, message)
         return res.status(200).json();
     }
