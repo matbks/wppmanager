@@ -10,9 +10,22 @@ const app = express()
       app.use(express.json())
       app.use( express.urlencoded( { extended:false } ))
 
-// app.get('/', (request, response) => {
-//     response.send('Hello world!');
-// });
+app.post('/', (request, response) => {
+
+    try { 
+                        const { number, message } = req.body.toLowerCase()
+                        console.log(number)
+                        console.log(message)
+                        wppManager.sendText(number, message)
+                        return res.send(200).json();
+                    }
+                    catch (error) {
+                        console.error(error);
+                        response.send(500).json({ status: "error", message: error })
+                    }
+          
+    response.send('Hello world!');
+})
 
 // app.route('/events')
 //   .all(function (req, res, next) {
