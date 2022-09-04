@@ -56,11 +56,11 @@ router.post('/send', (req, res) => {
                         console.log(number)
                         console.log(message)
                         wppManager.sendText(number, message)
-                        return res.status(200).json();
+                        return res.sendStatus(200).json();
                     }
                     catch (error) {
                         console.error(error);
-                        res.status(500).json({ status: "error", message: error })
+                        res.sendStatus(500).json({ status: "error", message: error })
                     }
           })
 // })
