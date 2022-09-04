@@ -55,11 +55,11 @@ class WppManager {
     private menu = screens.menu.menuButtons.toString()
     // private qr: QRCode
 
-    private setup_answers(client: Whatsapp) {   
+    private async setup_answers(client: Whatsapp) {   
 
         console.log("setup_anw")
 
-        client.onMessage((message) => {
+        await client.onMessage((message) => {
 
             console.log("client.onmessage")
 
