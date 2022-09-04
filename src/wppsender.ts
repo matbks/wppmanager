@@ -198,6 +198,7 @@ class WppManager {
                 "chatIsAvailable"].includes(statusSession)
         }
 
+
         // const start = async (client: Whatsapp) => {
 
         //     this.client = client
@@ -213,7 +214,6 @@ class WppManager {
         //     }
 
         // }
-
 
 
         create({ session: "ws-sender-dev", multidevice: true })
@@ -236,6 +236,7 @@ class WppManager {
                 }
             });
         }
+
     }
 
 }
