@@ -81,17 +81,22 @@ class WppManager {
 
     private initialize() {
 
+        create({ session: "ws-sender-dev", multidevice: true })
+            .then((client) => this.start(client))
+            .catch((error) => console.error(error))
+
+
         const status = (statusSession: string) => {
 
             this.connected = ["isLogged",
                 "qrReadSucess",
                 "chatIsAvailable"].includes(statusSession)
         }
+        
 
+    }
 
-    let that = this;
-
-      async function start(client: Whatsapp) {
+        async start(client: Whatsapp) {
 
             console.log("setup_anw")
 
@@ -112,7 +117,7 @@ class WppManager {
 
                         console.log("menu")
                         // let screen = screens.menu.menuButtons.toString()
-                        that.sendButtons(message.from, that.menu)
+                        this.sendButtons(message.from, this.menu)
 
                             .then((result) => {
                                 console.log('Result: ', result)
@@ -130,7 +135,7 @@ class WppManager {
 
                         console.log("alterar minha senha")
 
-                        that.sendText(message.from, "Digite sua nova senha:")
+                        this.sendText(message.from, "Digite sua nova senha:")
 
                         lastChoice = "alterar minha senha"
 
@@ -140,7 +145,7 @@ class WppManager {
 
                         console.log("outro usuário deseja alterar sua senha")
 
-                        that.sendText(message.from, "Digite o número de telefone do usuário")
+                        this.sendText(message.from, "Digite o número de telefone do usuário")
 
                         lastChoice = "numero de telefone do usuario"
                         break;
@@ -152,21 +157,21 @@ class WppManager {
 
                         if (lastChoice == "alterar minha senha") {
 
-                            that.sendButtons("5511932735086@c.us", that.menu)
+                            this.sendButtons("5511932735086@c.us", this.menu)
                                 .then((result) => {
-                                    that.sendText(message.from, "Menu de ajuda enviado ao usuário.")
+                                    this.sendText(message.from, "Menu de ajuda enviado ao usuário.")
                                     console.log('Result: ', result)
                                     lastChoice = ''
                                 })
                                 .catch((erro) => {
-                                    that.sendText(message.from, erro)
+                                    this.sendText(message.from, erro)
                                     console.error('Error when sending: ', erro)
                                     lastChoice = ''
                                 });
 
                             // validNewPass()
                             // changePass()
-                            that.sendText(message.from, "Senha alterada com sucesso!")
+                            this.sendText(message.from, "Senha alterada com sucesso!")
 
                             lastChoice = ''
 
@@ -182,14 +187,14 @@ class WppManager {
                             // let userNumber = this.validNumber(newMessage)
 
                             // this.sendButtons("5511932735086@c.us", this.menu)
-                            that.sendButtons(message.from, that.menu)
+                            this.sendButtons(message.from, this.menu)
                                 .then((result) => {
-                                    that.sendText(message.from, "Menu de ajuda enviado ao usuário.")
+                                    this.sendText(message.from, "Menu de ajuda enviado ao usuário.")
                                     console.log('Result: ', result)
                                     lastChoice = ''
                                 })
                                 .catch((erro) => {
-                                    that.sendText(message.from, erro)
+                                    this.sendText(message.from, erro)
                                     console.error('Error when sending: ', erro)
                                     lastChoice = ''
                                 });
@@ -201,19 +206,15 @@ class WppManager {
                 }
             })
 
-            if (that.testing) {
+            if (this.testing) {
 
                 console.info("Starting conversation for testing ...")
 
-                that.sendText("5511932735086", "Cardápio")
+                this.sendText("5511932735086", "Cardápio")
 
             }
 
         }
-
-        create({ session: "ws-sender-dev", multidevice: true })
-            .then((client) => start(client))
-            .catch((error) => console.error(error))
 
     }
 
