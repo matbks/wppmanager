@@ -7,7 +7,7 @@ var port = process.env.PORT || 5000
 var router = express.Router()
 
 const app = express()
-//   app.use(express.json())
+      app.use(express.json())
 //   app.use( express.urlencoded( { extended:false } ))
 
 // router.route('/send')
