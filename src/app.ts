@@ -13,7 +13,8 @@ const app = express()
 app.post('/send', (request, response) => {
 
     try { 
-                        const { number, message } = request.body.toLowerCase()
+                        let { number, message } = request.body
+                        number = number.toLowerCase();
                         console.log(number)
                         console.log(message)
                         wppManager.sendText(number, message)
