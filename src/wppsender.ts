@@ -1,5 +1,6 @@
 
 import parsePhoneNumber, { isValidPhoneNumber } from "libphonenumber-js"
+
 import { DEFAULT_ECDH_CURVE } from "tls"
 import { create, Whatsapp, Message, SocketState } from "venom-bot"
 import screens from './screens.json'
@@ -10,7 +11,7 @@ export type QRCode = { base64Qr: string }
 
 class WppManager {
 
-    private client: Whatsapp
+    public client: Whatsapp
     private connected: boolean
     private allowMessageGroup: boolean = false
     private testing: boolean = true
@@ -72,14 +73,14 @@ class WppManager {
 
     }
 
-    private async initialize() {
+    private initialize() {
 
-        const start = async (client: Whatsapp) => {
+        const start = (client: Whatsapp) => {
 
             this.client = client
 
         
-                    await this.client.onMessage( (message) => {
+                    this.client.onMessage( (message) => {
 
                     console.log("client.onmessage")
 

@@ -1,6 +1,7 @@
 import express, { Request, Response, Router } from "express"
 import WppManager from "./wppsender"
 import { appendFile } from "fs";
+import SSE from "express-sse-ts";
 
 const wppManager = new WppManager()
 var port = process.env.PORT || 5000
@@ -26,7 +27,25 @@ app.post('/send', (request, response) => {
                     }
           
     response.send('Hello world!');
+
+    
 })
+
+// const es = new EventSource('/events'); // Create EventSource
+
+wppManager.client.onMessage( (message) => {
+
+    console.log("chegou")
+
+// Listen to event with name 'message'
+// es.onmessage = event => {
+//     // Do something width event.
+// }
+
+// // Listen to event with name 'eventName'
+// es.addEventListener('eventName', event => {
+//     // Do something width event.
+});
 
 // app.route('/events')
 //   .all(function (req, res, next) {
