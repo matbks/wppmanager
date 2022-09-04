@@ -78,122 +78,122 @@ class WppManager {
 
             this.client = client
 
-        }
-            //     client.onMessage((message) => {
+        
+                client.onMessage((message) => {
 
-            //         console.log("client.onmessage")
+                    console.log("client.onmessage")
 
-            //         let newMessage = message.body.toLowerCase()
+                    let newMessage = message.body.toLowerCase()
 
-            //         // if (trigger.words.includes(message.body) && message.isGroupMsg === this.allowMessageGroup) {             
-            //         // let triggerIndex = trigger.words.indexOf( newMessage )
-            //         // let triggerAction = trigger.actions[ triggerIndex ] as keyof typeof screens
-            //         console.log("newmessage")
-            //         console.log(newMessage)
-            //         switch (newMessage) {
+                    // if (trigger.words.includes(message.body) && message.isGroupMsg === this.allowMessageGroup) {             
+                    // let triggerIndex = trigger.words.indexOf( newMessage )
+                    // let triggerAction = trigger.actions[ triggerIndex ] as keyof typeof screens
+                    console.log("newmessage")
+                    console.log(newMessage)
+                    switch (newMessage) {
 
-            //             case "menu":
+                        case "menu":
 
-            //                 console.log("menu")
-            //                 // let screen = screens.menu.menuButtons.toString()
-            //                 this.sendButtons(message.from, this.menu)
+                            console.log("menu")
+                            // let screen = screens.menu.menuButtons.toString()
+                            this.sendButtons(message.from, this.menu)
 
-            //                     .then((result) => {
-            //                         console.log('Result: ', result)
-            //                     })
+                                .then((result) => {
+                                    console.log('Result: ', result)
+                                })
 
-            //                     .catch((erro) => {
-            //                         console.error('Error when sending: ', erro)
-            //                     });
+                                .catch((erro) => {
+                                    console.error('Error when sending: ', erro)
+                                });
 
-            //                 lastChoice = "menu"
+                            lastChoice = "menu"
 
-            //                 break;
+                            break;
 
-            //             case "alterar minha senha":
+                        case "alterar minha senha":
 
-            //                 console.log("alterar minha senha")
+                            console.log("alterar minha senha")
 
-            //                 this.sendText(message.from, "Digite sua nova senha:")
+                            this.sendText(message.from, "Digite sua nova senha:")
 
-            //                 lastChoice = "alterar minha senha"
+                            lastChoice = "alterar minha senha"
 
-            //                 break;
+                            break;
 
-            //             case "outro usuário deseja alterar sua senha":
+                        case "outro usuário deseja alterar sua senha":
 
-            //                 console.log("outro usuário deseja alterar sua senha")
+                            console.log("outro usuário deseja alterar sua senha")
 
-            //                 this.sendText(message.from, "Digite o número de telefone do usuário")
+                            this.sendText(message.from, "Digite o número de telefone do usuário")
 
-            //                 lastChoice = "numero de telefone do usuario"
-            //                 break;
+                            lastChoice = "numero de telefone do usuario"
+                            break;
 
-            //             default:
+                        default:
 
-            //                 console.log("default")
-            //                 console.log(newMessage)
+                            console.log("default")
+                            console.log(newMessage)
 
-            //                 if (lastChoice == "alterar minha senha") {
+                            if (lastChoice == "alterar minha senha") {
 
-            //                     this.sendButtons("5511932735086@c.us", this.menu)
-            //                         .then((result) => {
-            //                             this.sendText(message.from, "Menu de ajuda enviado ao usuário.")
-            //                             console.log('Result: ', result)
-            //                             lastChoice = ''
-            //                         })
-            //                         .catch((erro) => {
-            //                             this.sendText(message.from, erro)
-            //                             console.error('Error when sending: ', erro)
-            //                             lastChoice = ''
-            //                         });
+                                this.sendButtons("5511932735086@c.us", this.menu)
+                                    .then((result) => {
+                                        this.sendText(message.from, "Menu de ajuda enviado ao usuário.")
+                                        console.log('Result: ', result)
+                                        lastChoice = ''
+                                    })
+                                    .catch((erro) => {
+                                        this.sendText(message.from, erro)
+                                        console.error('Error when sending: ', erro)
+                                        lastChoice = ''
+                                    });
 
-            //                     // validNewPass()
-            //                     // changePass()
-            //                     this.sendText(message.from, "Senha alterada com sucesso!")
+                                // validNewPass()
+                                // changePass()
+                                this.sendText(message.from, "Senha alterada com sucesso!")
 
-            //                     lastChoice = ''
+                                lastChoice = ''
 
-            //                 }
+                            }
 
-            //                 if (lastChoice == "numero de telefone do usuario") {
+                            if (lastChoice == "numero de telefone do usuario") {
 
-            //                     // validNewPass()
-            //                     // changePass()
+                                // validNewPass()
+                                // changePass()
 
-            //                     console.log("outro usu")
+                                console.log("outro usu")
 
-            //                     // let userNumber = this.validNumber(newMessage)
+                                // let userNumber = this.validNumber(newMessage)
 
-            //                     // this.sendButtons("5511932735086@c.us", this.menu)
-            //                     this.sendButtons(message.from, this.menu)
-            //                         .then((result) => {
-            //                             this.sendText(message.from, "Menu de ajuda enviado ao usuário.")
-            //                             console.log('Result: ', result)
-            //                             lastChoice = ''
-            //                         })
-            //                         .catch((erro) => {
-            //                             this.sendText(message.from, erro)
-            //                             console.error('Error when sending: ', erro)
-            //                             lastChoice = ''
-            //                         });
+                                // this.sendButtons("5511932735086@c.us", this.menu)
+                                this.sendButtons(message.from, this.menu)
+                                    .then((result) => {
+                                        this.sendText(message.from, "Menu de ajuda enviado ao usuário.")
+                                        console.log('Result: ', result)
+                                        lastChoice = ''
+                                    })
+                                    .catch((erro) => {
+                                        this.sendText(message.from, erro)
+                                        console.error('Error when sending: ', erro)
+                                        lastChoice = ''
+                                    });
 
 
-            //                 }
+                            }
 
-            //                 break;
-            //         }
-            //     })
+                            break;
+                    }
+                })
 
-                // if (this.testing) {
+                if (this.testing) {
 
-                //     console.info("Starting conversation for testing ...")
+                    console.info("Starting conversation for testing ...")
 
-                //     this.sendText("5511932735086", "Cardápio")
+                    this.sendText("5511932735086", "Cardápio")
 
-                // }
+                }
 
-            // }
+            }
 
             // create({ session: "ws-sender-dev", multidevice: true })
             //     .then((client) => start(client))
@@ -210,7 +210,7 @@ class WppManager {
             }
 
 
-            create("ws-sender-dev", qr , status )
+            create( { session: "ws-sender-dev", multidevice: true } )
             .then((client) => start(client))
             .catch((error) => console.error(error))
            
