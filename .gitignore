@@ -1,4 +1,4 @@
-**tokens/*
+**tokens/*/*/*/*
 node_modules
 # ./build
 # !./build/.keep
