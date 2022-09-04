@@ -4,23 +4,23 @@ import parsePhoneNumber, { isValidPhoneNumber } from "libphonenumber-js"
 import { DEFAULT_ECDH_CURVE } from "tls"
 import { create, Whatsapp, Message, SocketState } from "venom-bot"
 import screens from './screens.json'
-import trigger from './triggers.json'
-let lastChoice = '' 
+// import trigger from './triggers.json'
+// let lastChoice = '' 
 
-export type QRCode = { base64Qr: string }
+// export type QRCode = { base64Qr: string }
 
 class WppManager {
 
     public client: Whatsapp
-    private connected: boolean
-    private allowMessageGroup: boolean = false
-    private testing: boolean = true
-    private menu = screens.menu.menuButtons.toString()
+    // private connected: boolean
+    // private allowMessageGroup: boolean = false
+    // private testing: boolean = true
+    // private menu = screens.menu.menuButtons.toString()
 
     // CONSTRUCTOR ----------+---------+-----------
 
     constructor() {
-        this.initialize()
+       this.initialize()
     }
 
 
@@ -39,6 +39,7 @@ class WppManager {
     
 
     async sendButtons(to: string,
+
         body: string) {
 
         let number = this.validNumber(to)
@@ -54,8 +55,7 @@ class WppManager {
             });
     }
 
-
-    private qr: QRCode
+    // private qr: QRCode
 
     private validNumber(phoneNumber: string) {
 
@@ -75,13 +75,12 @@ class WppManager {
 
     }
 
-    private async initialize() {
+      initialize() {
 
         const start = (client: Whatsapp) => {
 
             this.client = client
 
-        
             //         this.client.onMessage( (message) => {
 
             //         console.log("client.onmessage")
@@ -202,22 +201,21 @@ class WppManager {
             //     .then((client) => start(client))
             //     .catch((error) => console.error(error))
 
-            const qr = () => {
+            // const qr = () => {
 
-            }
-            const status = (statusSession: string) => {
+            // }
 
-                this.connected = ["isLogged",
-                    "qrReadSucess",
-                    "chatIsAvailable"].includes(statusSession)
-            }
+            // const status = (statusSession: string) => {
+
+            //     this.connected = ["isLogged",
+            //         "qrReadSucess",
+            //         "chatIsAvailable"].includes(statusSession)
+            // }
 
 
             create( { session: "ws-sender-dev", multidevice: true } )
             .then((client) => start(client))
             .catch((error) => console.error(error))
-           
-
 
         }
 

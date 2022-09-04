@@ -19,14 +19,14 @@ app.post('/send', (request, response) => {
                         console.log(number)
                         console.log(message)
                         wppManager.sendText(number, message)
+                        wppManager.listen()
                         return response.sendStatus(200).json();
                     }
                     catch (error) {
                         console.error(error);
                         response.send(500).json({ status: "error", message: error })
                     }
-          
-    response.send('Hello world!');
+        
 
     
 })
@@ -102,6 +102,6 @@ router.post('/send', (req, res) => {
 // });
 
 
-wppManager.listen()
+
 
 app.listen(port)
