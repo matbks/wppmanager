@@ -1,7 +1,5 @@
 // Supports ES6
 import { create, Whatsapp } from 'venom-bot'; 
-import { appendFile } from "fs";
-import express, { Request, Response, Router } from "express"
 
  create({
     session: '2', //name of session
