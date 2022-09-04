@@ -35,13 +35,13 @@ app.get('/', (request, response) => {
     response.send('Hello world!');
 });
 
-app.post('/send',  (req: Request, res: Response) => {
+app.post('/send', async (req: Request, res: Response) => {
 
     console.log("vou dar send");
 
     try {
         const { number, message } = req.body
-        wppManager.sendText(number, message)
+        await wppManager.sendText(number, message)
         return res.status(200).json();
     }
     catch (error) {
