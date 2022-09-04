@@ -32,7 +32,7 @@ app.post('/send', (request, response) => {
 })
 
 
-app.listen( (request: Request, response: Response) => { 
+app.listen(5000, (request: Request, response: Response) => { 
 
     console.log("request")
 
@@ -111,4 +111,4 @@ router.post('/send', (req, res) => {
 
 
 
-app.listen(port)
+// app.listen(port)
