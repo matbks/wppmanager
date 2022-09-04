@@ -22,7 +22,7 @@ app.post('/send', (req, res) => {
         const { number, message } = req.body.toLowerCase()
         console.log(number)
         console.log(message)
-        await wppManager.sendText(number, message)
+        wppManager.sendText(number, message)
         return res.status(200).json();
     }
     catch (error) {
