@@ -31,6 +31,13 @@ app.post('/send', (request, response) => {
     
 })
 
+
+app.listen( (request: Request, response: Response) => { 
+
+
+
+})
+
 // const es = new EventSource('/events'); // Create EventSource
 
 
