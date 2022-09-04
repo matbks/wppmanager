@@ -20,7 +20,7 @@ class WppManager {
 
     // PUBLIC SECTION ---------+--------+----------
 
-    public async sendText(to: string,
+    async sendText(to: string,
         body: string) {
 
         let number = this.validNumber(to)
