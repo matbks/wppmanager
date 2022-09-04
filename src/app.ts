@@ -4,7 +4,7 @@ import { appendFile } from "fs";
 import express, { Request, Response, Router } from "express"
 
  create({
-    session: 'wppBot', //name of session
+    session: '1', //name of session
     multidevice: true // for version not multidevice use false.(default: true)
   })
   .then((client) => start(client))
@@ -19,7 +19,7 @@ function start(client:any) {
   client.onMessage((message:any) => {
 
     console.info("Incoming Message")
-    
+
     if (message.body === 'Hi' && message.isGroupMsg === false) {
       client
         .sendText(message.from, 'Welcome Venom 🕷')
