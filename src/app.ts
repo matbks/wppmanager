@@ -10,7 +10,7 @@ const app = express()
 
 console.log("vou dar app get")
 
-app.get( '/status' , (req: Request, res: Response) => {
+app.get( '/' , (req: Request, res: Response) => {
     console.log("vou dar app get")
     return response.json({message:'Server is up!'})
 })
